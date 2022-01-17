@@ -38,7 +38,7 @@ const MainHeader = styled.div`
 
 const Nav = styled.nav`
   position: absolute;
-  width: 100%;
+  width: calc(100% - 64px);
 
   display: flex;
   flex: 1;
