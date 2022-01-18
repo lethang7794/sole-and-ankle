@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 
 import { COLORS, WEIGHTS } from '../../constants';
 import { formatPrice, pluralize, isNewShoe } from '../../utils';
+import ShoeFlag from '../ShoeFlag';
 import Spacer from '../Spacer';
 
 const ShoeCard = ({ slug, name, imageSrc, price, salePrice, releaseDate, numOfColors }) => {
@@ -29,6 +30,9 @@ const ShoeCard = ({ slug, name, imageSrc, price, salePrice, releaseDate, numOfCo
         <ImageWrapper>
           <Image alt='' src={imageSrc} />
         </ImageWrapper>
+        <ShoeFlagWrapper>
+          <ShoeFlag variant={variant} />
+        </ShoeFlagWrapper>
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
@@ -36,6 +40,7 @@ const ShoeCard = ({ slug, name, imageSrc, price, salePrice, releaseDate, numOfCo
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          {!!salePrice && <SalePrice>{formatPrice(salePrice)}</SalePrice>}
         </Row>
       </Wrapper>
     </Link>
@@ -49,7 +54,9 @@ const Link = styled.a`
   flex: 1 1 300px;
 `;
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+  position: relative;
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -57,9 +64,19 @@ const ImageWrapper = styled.div`
 
 const Image = styled.img`
   width: 100%;
+  border-radius: 16px 16px 4px 4px;
+`;
+
+const ShoeFlagWrapper = styled.div`
+  position: absolute;
+  top: 12px;
+  right: -4px;
 `;
 
 const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+
   font-size: 1rem;
 `;
 
