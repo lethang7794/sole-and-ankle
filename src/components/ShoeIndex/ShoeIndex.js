@@ -40,10 +40,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  align-items: baseline;
 `;
 
 const LeftColumn = styled.div`
-  padding-top: 16px;
   margin-right: 32px;
   flex: 0 0 248px;
 `;
@@ -54,7 +54,7 @@ const MainColumn = styled.div`
 
 const Header = styled.header`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
 `;
 
