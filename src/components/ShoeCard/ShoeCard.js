@@ -24,6 +24,11 @@ const ShoeCard = ({ slug, name, imageSrc, price, salePrice, releaseDate, numOfCo
       ? 'new-release'
       : 'default'
 
+  let PriceComponent = Price;
+  if (!!salePrice) {
+    PriceComponent = CrossedPrice;
+  }
+
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
@@ -36,7 +41,7 @@ const ShoeCard = ({ slug, name, imageSrc, price, salePrice, releaseDate, numOfCo
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <PriceComponent>{formatPrice(price)}</PriceComponent>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
@@ -86,6 +91,11 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span``;
+
+const CrossedPrice = styled(Price)`
+  color: ${COLORS.gray[700]};
+  text-decoration: line-through;
+`;
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};
